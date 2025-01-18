@@ -23,5 +23,11 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemCyan
+        
+        /*
+        Task {
+            try? await vm.fetchWeather(for: "New Delhi")
+        }
+         */
     }
 }
