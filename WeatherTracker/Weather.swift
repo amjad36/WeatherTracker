@@ -38,3 +38,25 @@ public struct Condition: Codable {
     let text: String
     let icon: String
 }
+
+extension Weather {
+    static var data: Weather {
+        .init(
+            location: .init(name: "New York", region: "NY", country: "USA"),
+            current: .init(
+                temprature: 10.0,
+                humidity: 60.0,
+                uvIndex: 8.0,
+                feelsLikeTemperature: 12.0,
+                condition: .init(
+                    text: "Sunny",
+                    icon: "//cdn.weatherapi.com/weather/64x64/day/122.png"
+                )
+            )
+        )
+    }
+    
+    var imageUrl: URL? {
+        URL(string: "https:" + current.condition.icon)
+    }
+}
