@@ -25,6 +25,7 @@ struct WeatherView: View {
                         .gesture(
                             TapGesture()
                                 .onEnded {
+                                    vm.saveSelectedCity()
                                     vm.viewState = .savedCity
                                 }
                         )
@@ -35,8 +36,15 @@ struct WeatherView: View {
                 Task {
                     guard !text.isEmpty, text.count > 3 else { return }
                     await vm.fetchWeather(for: text)
+                    vm.viewState = .resultCard
                 }
             })
+            .task {
+                if let city = vm.getSavedCityName() {
+                    await vm.fetchWeather(for: city)
+                    vm.viewState = .savedCity
+                }
+            }
         }
     }
 }
