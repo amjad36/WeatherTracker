@@ -14,14 +14,20 @@ public enum WeatherViewState {
 }
 
 final class WeatherViewModel: ObservableObject {
+    private let weatherService: WeatherServiceProtocol
+    
     @Published var viewState: WeatherViewState = .empty
     @Published var weather: Weather?
     @Published var error: Error?
     
+    init(weatherService: WeatherServiceProtocol = WeatherService()) {
+        self.weatherService = weatherService
+    }
+    
     @MainActor
     func fetchWeather(for city: String) async {
         do {
-            weather = try await WeatherService.shared.fetchWeather(.currentWeather(city))
+            weather = try await weatherService.fetchWeather(.currentWeather(city))
         }
         catch {
             self.error = error
