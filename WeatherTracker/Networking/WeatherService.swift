@@ -7,12 +7,13 @@
 
 import Foundation
 
-public final class WeatherService {
-    public static let shared = WeatherService()
+public protocol WeatherServiceProtocol {
+    func fetchWeather<T: Decodable>(_ endpoint: Endpoint) async throws -> T
+}
+
+public final class WeatherService: WeatherServiceProtocol {
     
-    private init() { }
-    
-    func fetchWeather<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
+    public func fetchWeather<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
         
         guard let url = URL(string: Constants.baseURL + endpoint.url) else {
             throw NetworkError.invalidURL
