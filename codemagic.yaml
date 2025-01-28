@@ -2,19 +2,17 @@ workflows:
     weather-tracker-workflow:
         name: Weather Tracker Workflow
         scripts:
-            - name: CICD Started
-                script: echo "Welcome to your CI/CD setup"
-            - Build WeatherTracker .app
-                script: | 
-                    xcodebuild build \
-                        -project "WeatherTracker.xcodeproj" \
-                        -scheme "WeatherTracker" \
-                        -sdk iphonesimulator \
-                        -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=18.0' \
-                        -configuration Debug \
-                        CODE_SIGN_IDENTITY="" \
-                        CODE_SIGNING_REQUIRED=NO \
-                        CODE_SIGNING_ALLOWED=NO
+            - name: Build WeatherTracker .app
+              script: |
+                xcodebuild build \
+                    -project "WeatherTracker.xcodeproj" \
+                    -scheme "WeatherTracker" \
+                    -sdk iphonesimulator \
+                    -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=18.0' \
+                    -configuration Debug \
+                    CODE_SIGN_IDENTITY="" \
+                    CODE_SIGNING_REQUIRED=NO \
+                    CODE_SIGNING_ALLOWED=NO
             artifacts:
                 - /tmp/xcodebuild_logs/*.log
                 - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
