@@ -1,8 +1,8 @@
 workflows:
     weather-tracker-workflow:
-        name: Weather Tracker Workflow
+        name: WeatherTracker Workflow
         scripts:
-            - name: Build WeatherTracker .app
+            - name: Build WeatherTracker
               script: |
                 xcodebuild build \
                     -project "WeatherTracker.xcodeproj" \
