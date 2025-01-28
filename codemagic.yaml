@@ -2,8 +2,8 @@ workflows:
     weather-tracker-workflow:
         name: Weather Tracker Workflow
         scripts:
-            - name: "CI/CD Started"
-            - script: echo "Welcome to your CI/CD setup"
+            - name: CICD Started
+              script: echo "Welcome to your CI/CD setup"
         publishing:
             email:
                 recipients:
