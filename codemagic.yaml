@@ -1,0 +1,12 @@
+workflows:
+    weather-tracker-workflow:
+        name: Weather Tracker Workflow
+        scripts:
+            - name: CI/CD Started
+            - script: echo "Welcome to your CI/CD setup"
+        publishing:
+            email:
+                recipients:
+                    - khan.amjad36@gmail.com
+        max_build_duration: 120
+        instance_type: mac_mini_m2
